@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/index.js",
+    "start": "node build/index.js",
     "dev": "nodemon src/index.js --exec babel-node --ignore src/public",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel src -d dist && ncp src/public/index.html dist/public/index.html && ncp src/public/index.css dist/public/index.css"
+    "build": "babel src -d build && ncp src/public/index.html build/public/index.html && ncp src/public/index.css build/public/index.css"
   },
   "keywords": [],
   "author": "",
