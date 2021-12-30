@@ -39,7 +39,7 @@ const noteUI = (nota) => {
     return div
 }
 const render_notes = (notes) => {
-    console.log(notes)
+
     notesList.innerHTML = ""
     notes.map((u) => {
         notesList.append(noteUI(u))
