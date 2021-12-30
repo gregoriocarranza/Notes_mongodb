@@ -1,6 +1,7 @@
 import express from "express"
 import { Server as WebSocketServer } from "socket.io"
 import http from "http"
+import cors from "cors"
 // import { v4 as uuid } from 'uuid';
 import mongoose from "mongoose"
 import TaskModel from "./models/TaskModel"
@@ -10,17 +11,22 @@ const app = express()
 const server = http.createServer(app)
 const io = new WebSocketServer(server)
 
+app.use(cors())
 app.use(express.static(__dirname + "/public"))
 
 const MongoUrl = "mongodb://user:user123@database-0-shard-00-00.vgtwg.mongodb.net:27017,database-0-shard-00-01.vgtwg.mongodb.net:27017,database-0-shard-00-02.vgtwg.mongodb.net:27017/Notes_flia?ssl=true&replicaSet=atlas-uit0wk-shard-0&authSource=admin&retryWrites=true&w=majority"
-const PORT = process.env.PORT || 3000
-app.get("/", (req, res) => {
-    console.log(`Hola`)
-    res.send("Hola user")
-})
+const PORT = process.env.PORT || 3030
+
+
+// app.get("/", (req, res) => {
+//     console.log(`Hola`)
+//     res.send("Hola user")
+// })
 
 io.on("connection", (socket) => {
+    socket.emit(`server:catchConect`, socket.id)
     console.log("Nueva Coneccion: ", socket.id)
+    socket.on(`ping`, () => console.log("pong"))
 
     TaskModel.find({}, "title description completed date").then(docs => {
         socket.emit(`server:loadNotes`, docs)
@@ -32,6 +38,7 @@ io.on("connection", (socket) => {
 
     const loadNotes = () => {
         TaskModel.find({}, "title description completed date").then(docs => {
+            socket.emit(`server:loadNotes`, docs)
             io.emit(`server:loadNotes`, docs)
         })
             .catch((err) => {
@@ -47,8 +54,8 @@ io.on("connection", (socket) => {
         const toDo = new TaskModel({ title: newNote.title, description: newNote.description, completed: false, date: new Date() })
         toDo.save().then(doc => {
             console.log("Dato insertado correctamente", doc)
-            console.log(doc._id)
-            io.emit(`server:renderNotes`, doc)
+            loadNotes()
+            // io.emit(`server:renderNotes`, doc)
 
         }).catch(err => {
             console.log("Error al insertar en database", err.message)
@@ -74,7 +81,6 @@ io.on("connection", (socket) => {
     })
 
     socket.on(`client:toUpdate`, id => {
-
         TaskModel.findOne({ _id: id }, (err, existe) => {
             socket.emit(`server:noteToUpdate`, existe)
         })
