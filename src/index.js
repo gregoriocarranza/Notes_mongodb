@@ -15,7 +15,7 @@ app.use(cors())
 app.use(express.static(__dirname + "/public"))
 
 const MongoUrl = "mongodb://user:user123@database-0-shard-00-00.vgtwg.mongodb.net:27017,database-0-shard-00-01.vgtwg.mongodb.net:27017,database-0-shard-00-02.vgtwg.mongodb.net:27017/Notes_flia?ssl=true&replicaSet=atlas-uit0wk-shard-0&authSource=admin&retryWrites=true&w=majority"
-const PORT = process.env.PORT || 3030
+const PORT = process.env.PORT || 3030 /*Puerto default de cualquier host o localhost:3030 */
 
 
 // app.get("/", (req, res) => {
