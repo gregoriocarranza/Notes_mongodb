@@ -24,6 +24,7 @@ const PORT = process.env.PORT || 3030 /*Puerto default de cualquier host o local
 // })
 
 io.on("connection", (socket) => {
+    
     socket.emit(`server:catchConect`, socket.id)
     console.log("Nueva Coneccion: ", socket.id)
     socket.on(`ping`, () => console.log("pong"))
