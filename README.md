@@ -27,3 +27,11 @@ Esto nos iniciara por consola el servidor. Si bien esta configurado para que des
 Gregorio Carranza Torres
 
 Año 2021 
+
+
+Hola, vengo del 2023, mas concretamente del 24 de febrero, donde te volviste loco para buscar que habias hecho en este repositorio, aca una aclaracion:
+
+# Notes
+En este proyecto usaste MongoDb para guardar las notas yyyy usaste Babel (que todavia no entiendo como carajo hiciste) para el "frontend"
+
+Te quiero mucho, y espero que cuando leas esto en unos años seas exitoso. Espero que con ella haya salido todo bien
