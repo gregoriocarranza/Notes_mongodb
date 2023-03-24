@@ -34,4 +34,4 @@ Hola, vengo del 2023, mas concretamente del 24 de febrero, donde te volviste loc
 # Notes
 En este proyecto usaste MongoDb para guardar las notas yyyy usaste Babel (que todavia no entiendo como carajo hiciste) para el "frontend"
 
-Te quiero mucho, y espero que cuando leas esto en unos años seas exitoso. Espero que con ella haya salido todo bien
+Te quiero mucho, y espero que cuando leas esto en unos años seas exitoso. Espero que haya salido todo bien
